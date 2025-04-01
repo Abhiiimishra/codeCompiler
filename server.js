@@ -6,7 +6,14 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-app.use(cors());
+// Enable CORS for http://localhost:4200 (Angular app)
+const corsOptions = {
+    origin: "http://localhost:4200", // Allow requests from localhost:4200
+    methods: ["GET", "POST"],       // Specify allowed methods
+    allowedHeaders: ["Content-Type"] // Allow specific headers
+};
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 const tempDir = "temp_files";
